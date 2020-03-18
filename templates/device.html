@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Device</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+    <meta http-equiv="refresh" content="15" >
+</head>
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Device Information
+                </h1>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                  <form method="POST">
+		    {% csrf_token %}
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                {{ form.as_p }}
+                            </div>
+                            <div class="control">
+                                <button class="button is-info" name="Add_Device">
+                                    Add Device
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    {% for device in deviceid_data %}
+		     <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <span class="title">{{ device.name }}</span>
+                                        <br>
+										<span class="subtitle">type: {{ device.type }}</span>
+										<span class="subtitle">Connect: {{ device.connect }}</span>
+                                        <span class="subtitle">Mode:{{ device.mode }}</span>
+										<span class="subtitle">Parameter:{{ device.paratemer }}</span>
+										<span class="subtitle">Value:{{ device.temperature }}</span>
+										<span class="subtitle">State:{{ device.state }}</span><br>
+
+                                      <form method="POST" >
+                                          {% csrf_token %}
+                                          {{ device.DeviceInfo.as_table }}
+                                          <button type="submit" name={{ device.name }}>Update</button>
+                                      </form>
+                                      </label>
+                                        <br> 
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                     </div>
+		     {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    </footer>
+</body>
+</html>
