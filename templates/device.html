@@ -58,12 +58,17 @@
                                     <p>
                                         <span class="title">{{ device.name }}</span>
                                         <br>
-										<span class="subtitle">type: {{ device.type }}</span>
-										<span class="subtitle">Connect: {{ device.connect }}</span>
+					<span class="subtitle">type: {{ device.type }}</span>
+					    <br>
+					<span class="subtitle">Connect: {{ device.connect }}</span>
+					    <br>
                                         <span class="subtitle">Mode:{{ device.mode }}</span>
-										<span class="subtitle">Parameter:{{ device.paratemer }}</span>
-										<span class="subtitle">Value:{{ device.temperature }}</span>
-										<span class="subtitle">State:{{ device.state }}</span><br>
+					    <br>
+					<span class="subtitle">Parameter:{{ device.parameter }}</span>
+					    <br>
+					<span class="subtitle">Value:{{ device.value }}</span>
+					    <br>
+					<span class="subtitle">State:{{ device.state }}</span><br>
 
                                       <form method="POST" >
                                           {% csrf_token %}
